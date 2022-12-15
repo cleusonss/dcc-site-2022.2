@@ -1,0 +1,37 @@
+.squaresRow {
+    display: flex;
+}
+
+.square {
+    margin: 0 10px;
+}
+
+.squareTitle {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+.squareSubTitle {
+    display: flex;
+    justify-content: center;
+}
+
+.tableStripped {
+    width: 100%; 
+    border-collapse: collapse; 
+    background: lightgrey; 
+    color: black;
+}
+
+.tableStripped th {
+    padding: 8px;
+}
+
+.tableStripped td {
+    padding: 8px;
+}
+
+.tableBody tr:nth-of-type(odd) { 
+    background: white; 
+}

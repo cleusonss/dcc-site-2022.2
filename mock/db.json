@@ -1,0 +1,123 @@
+{
+  "eventos": [
+    {
+      "id": 1,
+      "titulo": "JCC - Jornada Científica da Computação",
+      "assunto": "",
+      "tipo": "Palestras e Cursos",
+      "dia": "10",
+      "mes": "Out",
+      "href": ""
+    },
+    {
+      "id": 2,
+      "titulo": "Defesa de TCC - Aluno: João Henrique",
+      "assunto": "Redes de Computadores",
+      "tipo": "TCC",
+      "dia": "22",
+      "mes": "Out",
+      "href": ""
+    },
+    {
+      "id": 3,
+      "titulo": "Defesa de TCC - Aluna: Maria da Silva",
+      "assunto": "Desenvolvimento Web",
+      "tipo": "TCC",
+      "dia": "05",
+      "mes": "Nov",
+      "href": ""
+    },
+    {
+      "id": 4,
+      "titulo": "Evento X",
+      "tipo": "Palestras e Cursos",
+      "assunto": "A definir...",
+      "dia": "12",
+      "mes": "Nov",
+      "href": ""
+    }
+  ],
+  "navItemstitulo": {
+    "id": 1,
+    "title": "DCC"
+  },
+  "navItemsApresentacao": [
+    {
+      "id": 1,
+      "icon": "CgLoadbarDoc",
+      "title": "Apresentação"
+    },
+    {
+      "id": 2,
+      "icon": "BiGroup",
+      "title": "Chefia e Coordenação"
+    },
+    {
+      "id": 3,
+      "icon": "BiHistory",
+      "title": "História"
+    },
+    {
+      "id": 4,
+      "icon": "BiOutline",
+      "title": "Missão e Valores"
+    },
+    {
+      "id": 5,
+      "icon": "HiOutlineOfficeBuilding",
+      "title": "Infraestrutura"
+    }
+  ],
+  "navItemsAdmin": [
+    {
+      "id": 1,
+      "icon": "BsGearFill",
+      "title": "Dashboard"
+    },
+    {
+      "id": 2,
+      "icon": "FaClipboardCheck",
+      "title": "Pages"
+    },
+    {
+      "id": 3,
+      "icon": "FaPen",
+      "title": "Posts"
+    },
+    {
+      "id": 4,
+      "icon": "BiGroup",
+      "title": "Users"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Cleuson",
+      "email": "cleuson@email.com",
+      "password": "1234",
+      "createdAt": "Dec 12, 2022"
+    },
+    {
+      "id": 2,
+      "name": "Acauan",
+      "email": "acauan@email.com",
+      "password": "1234",
+      "createdAt": "Dec 12, 2022"
+    },
+    {
+      "id": 3,
+      "name": "John",
+      "email": "John@email.com",
+      "password": "1234",
+      "createdAt": "Dec 12, 2022"
+    },
+    {
+      "id": 4,
+      "name": "Bruce",
+      "email": "bruce@email.com",
+      "password": "1234",
+      "createdAt": "Dec 12, 2022"
+    }
+  ]
+}
