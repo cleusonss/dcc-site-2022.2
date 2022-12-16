@@ -27,31 +27,35 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import CardHeader from "../../components/_ui/CardHeader";
-import styles from "./userData.module.css";
+import styles from "./postData.module.css";
 
 
 
-export default function UserData() {
+export default function PostData() {
 
     const router = useRouter();
-    const isNewUser = router.query.isNewUser;
+    const isNewPost = router.query.isNewPost;
+    const postType = router.query.postType;
     const URL = 'http://localhost:4000';
 
-    const [name, setName] = useState(isNewUser === 'false' ? router.query.name : '');
-    const [email, setEmail] = useState(isNewUser === 'false' ? router.query.email : '');
-    const [password, setPassword] = useState(isNewUser === 'false' ? router.query.password : '');
+   // isNewPost: true, postType: postType, lastId: lastId
+
+    const [alt, setAlt] = useState(isNewPost === 'false' ? router.query.alt : '');
+    const [title, setTitle] = useState(isNewPost === 'false' ? router.query.title : '');
+    const [content, setContent] = useState(isNewPost === 'false' ? router.query.content : '');
 
     function SubmitForm() {
-        if(isNewUser === 'false'){
+        if(isNewPost === 'false'){
+            if(postType === "news")
             axios({
                 method: 'put',
-                url: URL+'/users/'+router.query.id,
+                url: URL+'/news/'+router.query.id,
                 data: {
                     id: router.query.id,
-                    name: name,
-                    email: email,
-                    password: password,
-                    createdAt: router.query.createdAt
+                    img: "",
+                    alt: alt,
+                    title: title,
+                    content: content,
                 }
             })
             .catch(function (error) {
@@ -87,35 +91,35 @@ export default function UserData() {
                         bgHead="lightgrey"
                         bgBody="white"
                         color="black"
-                        title={isNewUser === 'true' ? "New User": "Change user data"}
+                        title={isNewPost === 'true' ? "Novo post": "Mudar dados"}
                         width="100%"
                     >
                         <div className={styles.form}>
                             <FormControl
-                                errortext={"Name Invalido"}
+                                errortext={"titulo Invalido"}
                                 p='4'
                                 isRequired
                             >
-                                <FormLabel>Name</FormLabel>
-                                <Input type='text' name='name' value={name} onChange={(e)=>setName(e.target.value)} placeholder='Name' />
+                                <FormLabel>Title</FormLabel>
+                                <Input type='text' name='title' value={title} onChange={(e)=>setTitle(e.target.value)} placeholder='Title' />
                             </FormControl>
 
                             <FormControl
-                                errortext={"Email Invalido"}
+                                errortext={"alt Invalido"}
                                 p='4'
                                 isRequired
                             >
-                                <FormLabel>Email</FormLabel>
-                                <Input type='email' name='email' value={email} onChange={(e)=>setEmail(e.target.value)} placeholder='Email' />
+                                <FormLabel>Alt</FormLabel>
+                                <Input type='text' name='alt' value={alt} onChange={(e)=>setAlt(e.target.value)} placeholder='Alt' />
                             </FormControl>
 
                             <FormControl
-                                errortext={"Password Invalido"}
+                                errortext={"content Invalido"}
                                 p='4'
                                 isRequired
                             >
-                                <FormLabel>Password</FormLabel>
-                                <Input type='text' name='password' value={password} onChange={(e)=>setPassword(e.target.value)} placeholder='Password' />
+                                <FormLabel>Content</FormLabel>
+                                <Input type='text' name='content' value={content} onChange={(e)=>setContent(e.target.value)} placeholder='Content' />
                             </FormControl>
 
                             <Button onClick={()=>SubmitForm()}>Confirmar</Button>

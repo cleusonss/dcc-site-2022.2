@@ -28,6 +28,8 @@ import styles from "./Users.module.css";
 export default function Users() {
 
     const [usersList, setUsersList] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [lastId, setLastId] = useState(0);
     const router = useRouter();
     const URL = 'http://localhost:4000';
 
@@ -38,11 +40,13 @@ export default function Users() {
         })
         .then(function (res) {
             setUsersList(res.data);
+            setLastId(res.data[res.data.length - 1].id + 1 );
+            setLoading(false);
         })
         .catch(function (error) {
             console.log(error);
         });
-    }, [usersList]);
+    }, [loading]);
 
     function renderUsers(data, index){
         return(
@@ -56,6 +60,9 @@ export default function Users() {
                     boxSize="4"
                     color="yellow.400"
                     as={FaPen}
+                    onClick={() => router.push({pathname:"/userData/userData", 
+                        query: { isNewUser: false, id: data.id, name: data.name, email: data.email, password: data.password, createdAt: data.createdAt } })
+                    }
                 /></td>
                 <td className={styles.icon}><Icon
                     mx="2"
@@ -81,17 +88,7 @@ export default function Users() {
     }
 
     function reloadUsers() {
-        axios({
-            method: 'get',
-            url: URL+'/users'
-        })
-        .then(function (res) {
-            console.log(res.data);
-            setUsersList(res.data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        setLoading(true);
     }
 
     return(
@@ -125,7 +122,7 @@ export default function Users() {
                 </div>
             </CardHeader>
 
-            <Button onClick={() => router.push("/userData/userData")}>Adicionar Usuário</Button>
+            <Button onClick={() => router.push({pathname:"/userData/userData", query: { isNewUser: true, lastId: lastId } })}>Adicionar Usuário</Button>
         </VStack>
     );
 }

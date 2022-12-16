@@ -28,6 +28,7 @@ import Square from "../../components/_ui/Square";
 import { FaUserAlt, FaClipboardList, FaPen, FaChartBar } from "react-icons/fa";
 import Dashboard from "../../components/sections/Dashboard/Dashboard";
 import Users from "../../components/sections/Users/Users";
+import Posts from "../Posts/Posts";
 
 export default function adminDashboard() {
 
@@ -87,6 +88,10 @@ export default function adminDashboard() {
                             option === "Dashboard"
                             ?
                             <Dashboard></Dashboard>
+                            :
+                            option === "Posts"
+                            ?
+                            <Posts></Posts>
                             :
                             option === "Users"
                             ?

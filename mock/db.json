@@ -93,10 +93,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Cleuson",
+      "name": "Cleuson11",
       "email": "cleuson@email.com",
       "password": "1234",
-      "createdAt": "Dec 12, 2022"
+      "createdAt": "12/12/2022"
     },
     {
       "id": 2,
@@ -118,6 +118,82 @@
       "email": "bruce@email.com",
       "password": "1234",
       "createdAt": "Dec 12, 2022"
+    }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "img": "/images/noticias/noticia1.png",
+      "alt": "logo-footer",
+      "title": "Colação de Grau - Formandos 2021.2",
+      "content": "Ocorreu nesta última terça-feira dia 18, a colação de grau dos alunos do Curso de Ciência da Computação. Foram 8 alunos,"
+    },
+    {
+      "id": 2,
+      "img": "/images/noticias/professores.png",
+      "alt": "profs",
+      "title": "Dia dos Professores",
+      "content": "Hoje é Dia do Professor e a SBC parabeniza os membros da nossa comunidade que exercem com tanta dedicação esse que é um dos mais nobres fazeres profissionais,"
+    }
+  ],
+  "newsLinks": [
+    {
+      "id": 1,
+      "link": "https://canaltech.com.br/software/por-que-a-geracao-z-pode-nao-gostar-da-linguagem-de-programacao-python-225719/",
+      "title": "Por que a Geração Z pode não gostar da linguagem de programação Python?"
+    },
+    {
+      "id": 2,
+      "link": "https://canaltech.com.br/ciencia/agencia-de-inteligencia-dos-eua-quer-recriar-mamutes-extintos-227359/",
+      "title": "Agência de Inteligência dos EUA quer recriar mamutes extintos"
+    },
+    {
+      "id": 3,
+      "link": "https://www.bbc.com/portuguese/geral-60156277",
+      "title": "O que é apocalipse quântico e existe razão para preocupação?"
+    },
+    {
+      "id": 4,
+      "link": "https://teletime.com.br/21/09/2022/starlink-supera-concorrentes-de-internet-via-satelite-no-brasil-aponta-ookla/",
+      "title": "Starlink supera concorrentes de Internet via satélite no Brasil, aponta Ookla"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "titulo": "JCC - Jornada Científica da Computação",
+      "assunto": "",
+      "tipo": "Palestras e Cursos",
+      "dia": "10",
+      "mes": "Out",
+      "href": ""
+    },
+    {
+      "id": 2,
+      "titulo": "Defesa de TCC - Aluno: João Henrique",
+      "assunto": "Redes de Computadores",
+      "tipo": "TCC",
+      "dia": "22",
+      "mes": "Out",
+      "href": ""
+    },
+    {
+      "id": 3,
+      "titulo": "Defesa de TCC - Aluna: Maria da Silva",
+      "assunto": "Desenvolvimento Web",
+      "tipo": "TCC",
+      "dia": "05",
+      "mes": "Nov",
+      "href": ""
+    },
+    {
+      "id": 4,
+      "titulo": "Evento X",
+      "tipo": "Palestras e Cursos",
+      "assunto": "A definir...",
+      "dia": "12",
+      "mes": "Nov",
+      "href": ""
     }
   ]
 }

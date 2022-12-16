@@ -1,0 +1,27 @@
+.tableStripped {
+    width: 100%; 
+    border-collapse: collapse; 
+    background: lightgrey; 
+    color: black;
+}
+
+.tableStripped th {
+    padding: 8px;
+}
+
+.tableStripped td {
+    padding: 8px;
+}
+
+.tableBody tr:nth-of-type(odd) { 
+    background: white; 
+}
+
+.boxScroll {
+    height: 30vh;
+    overflow-y: auto;
+}
+
+.icon:hover {
+    cursor: pointer;
+}

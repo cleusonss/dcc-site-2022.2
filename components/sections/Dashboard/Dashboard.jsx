@@ -29,21 +29,32 @@ import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {
 
-    const [navItemsAdmin, setNavItemsAdmin] = useState([]);
+    const [usersList, setUsersList] = useState([]);
     const URL = 'http://localhost:4000';
 
     useEffect(() => {
         axios({
             method: 'get',
-            url: URL+'/navItemsAdmin'
+            url: URL+'/users'
         })
         .then(function (res) {
-            setNavItemsAdmin(res.data);
+            setUsersList(res.data);
         })
         .catch(function (error) {
             console.log(error);
         });
     }, []);
+
+    function renderUsers(data, index){
+        return(
+            <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{data.name}</td>
+                <td>{data.email}</td>
+                <td>{data.createdAt}</td>
+            </tr>
+        );
+    }
 
     return(
         <VStack>
@@ -71,7 +82,7 @@ export default function Dashboard() {
                                     }}
                                     as={FaUserAlt}
                                 />
-                                <h2>203</h2>
+                                <h2>{usersList.length}</h2>
                             </div>
                             <div className={styles.squareSubTitle}>
                                 <span>Users</span>
@@ -170,33 +181,9 @@ export default function Dashboard() {
                     </thead>
         
                     <tbody className={styles.tableBody}>
-                        <tr>
-                            <td>1</td>
-                            <td>Rohit</td>
-                            <td>Rohit@email.com</td>
-                            <td>Dec 12, 2022</td>
-                        </tr>
-        
-                        <tr>
-                            <td>2</td>
-                            <td>Virat</td>
-                            <td>Virat@email.com</td>
-                            <td>Dec 12, 2022</td>
-                        </tr>
-        
-                        <tr>
-                            <td>3</td>
-                            <td>Rahul</td>
-                            <td>Rahul@email.com</td>
-                            <td>Dec 12, 2022</td>
-                        </tr>
-        
-                        <tr>
-                            <td>4</td>
-                            <td>Rishabh</td>
-                            <td>Rishabh@email.com</td>
-                            <td>Dec 12, 2022</td>
-                        </tr>
+                        {
+                            usersList.map(renderUsers)
+                        }
                     </tbody>
                 </table>
             </CardHeader>

@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Box,
   Center,
@@ -60,7 +62,170 @@ const eventos = [
   },
 ];
 
+
 export default function Home() {
+
+  const [news, setNews] = useState([]);
+  const [newsLinks, setNewsLinks] = useState([]);
+  const [eventos, setEventos] = useState([]);
+  const URL = 'http://localhost:4000';
+
+  useEffect(() => {
+    //vai pegar as noticias
+    axios({
+        method: 'get',
+        url: URL+'/news'
+    })
+    .then(function (res) {
+        if(res.data.length >= 2){
+          setNews([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+          ]);
+        }
+        else if(res.data.length === 1){
+          setNews([
+            res.data[res.data.length -1],
+          ]);
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    //vai pegar as noticias links
+    axios({
+      method: 'get',
+      url: URL+'/newsLinks'
+    })
+    .then(function (res) {
+        if(res.data.length >= 4){
+          setNewsLinks([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+            res.data[res.data.length -3],
+            res.data[res.data.length -4],
+          ]);
+        }
+        else if(res.data.length === 3){
+          setNewsLinks([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+            res.data[res.data.length -3],
+          ]);
+        }
+        else if(res.data.length === 2){
+          setNewsLinks([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+          ]);
+        }
+        else if(res.data.length === 1){
+          setNewsLinks([
+            res.data[res.data.length -1],
+          ]);
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+    //vai pegar os eventos
+    axios({
+      method: 'get',
+      url: URL+'/events'
+    })
+    .then(function (res) {
+        if(res.data.length >= 4){
+          setEventos([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+            res.data[res.data.length -3],
+            res.data[res.data.length -4],
+          ]);
+        }
+        else if(res.data.length === 3){
+          setEvents([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+            res.data[res.data.length -3],
+          ]);
+        }
+        else if(res.data.length === 2){
+          setEvents([
+            res.data[res.data.length -1],
+            res.data[res.data.length -2],
+          ]);
+        }
+        else if(res.data.length === 1){
+          setEvents([
+            res.data[res.data.length -1],
+          ]);
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+  }, []);
+
+  //funcao para renderizar as noticias
+  function renderNews(data, index) {
+    return(
+      <VStack
+        key={index}
+        borderBottom={{ base: "1px", md: "none" }}
+        borderBottomColor="gray.300"
+        pb={{ base: 2, md: 0 }}
+      >
+        <Box w="70%">
+          <Image
+            alt={data.alt}
+            src={data.img}
+            mx="auto"
+          />
+        </Box>
+        <Heading as="h2" size="sm">
+          {data.title}
+        </Heading>
+        <Text fontSize="xs">
+          {data.content}{" "}
+        </Text>
+        <Flex w="full" justifyContent="start">
+          <NextLink href="#" passHref>
+            <Link
+              fontSize="xs"
+              color="brand.500"
+              fontWeight="bold"
+              textAlign="left"
+            >
+              Ler mais...
+            </Link>
+          </NextLink>
+        </Flex>
+      </VStack>
+    );
+  }
+
+  //funcao para renderizar as noticias links
+  function renderNewsLink(data, index){
+    return(
+      <NextLink
+        key={index}
+        href={data.link}
+        passHref
+      >
+        <Link isExternal>
+          <HStack>
+            <FiExternalLink size="25px" />
+            <Text>
+              {data.title}
+            </Text>
+          </HStack>
+        </Link>
+      </NextLink>
+    );
+  }
+
   return (
     <VStack h="full" w="full">
       <Head>
@@ -125,129 +290,13 @@ export default function Home() {
                     p={0.5}
                     mx="auto"
                   >
-                    <VStack
-                      borderBottom={{ base: "1px", md: "none" }}
-                      borderBottomColor="gray.300"
-                      pb={{ base: 2, md: 0 }}
-                    >
-                      <Box w="70%">
-                        <Image
-                          alt="profs"
-                          src="/images/noticias/professores.png"
-                          mx="auto"
-                        />
-                      </Box>
-                      <Heading as="h2" size="sm">
-                        Dia dos Professores
-                      </Heading>
-                      <Text fontSize="xs">
-                        Hoje é Dia do Professor e a SBC parabeniza os membros da
-                        nossa comunidade que exercem com tanta dedicação esse
-                        que é um dos mais nobres fazeres profissionais,{" "}
-                      </Text>
-                      <Flex w="full" justifyContent="start">
-                        <NextLink href="#" passHref>
-                          <Link
-                            fontSize="xs"
-                            color="brand.500"
-                            fontWeight="bold"
-                            textAlign="left"
-                          >
-                            Ler mais...
-                          </Link>
-                        </NextLink>
-                      </Flex>
-                    </VStack>
-                    <VStack
-                      borderBottom={{ base: "1px", md: "none" }}
-                      borderBottomColor="gray.300"
-                      pb={{ base: 2, md: 0 }}
-                    >
-                      <Box w="70%">
-                        <Image
-                          alt="logo-footer"
-                          src="/images/noticias/noticia1.png"
-                          mx="auto"
-                        />
-                      </Box>
-                      <Heading as="h2" size="sm">
-                        Colação de Grau - Formandos 2021.2
-                      </Heading>
-                      <Text fontSize="xs">
-                        Ocorreu nesta última terça-feira dia 18, a colação de
-                        grau dos alunos do Curso de Ciência da Computação. Foram
-                        8 alunos,{" "}
-                      </Text>
-                      <Flex w="full" justifyContent="start">
-                        <NextLink href="#" passHref>
-                          <Link
-                            fontSize="xs"
-                            color="brand.500"
-                            fontWeight="bold"
-                            textAlign="left"
-                          >
-                            Ler mais...
-                          </Link>
-                        </NextLink>
-                      </Flex>
-                    </VStack>
+                    {
+                      news.map(renderNews)
+                    }
                     <VStack fontSize="xs" fontWeight="semibold" spacing={3}>
-                      <NextLink
-                        href="https://teletime.com.br/21/09/2022/starlink-supera-concorrentes-de-internet-via-satelite-no-brasil-aponta-ookla/"
-                        passHref
-                      >
-                        <Link isExternal>
-                          <HStack>
-                            <FiExternalLink size="25px" />
-                            <Text>
-                              Starlink supera concorrentes de Internet via
-                              satélite no Brasil, aponta Ookla
-                            </Text>
-                          </HStack>
-                        </Link>
-                      </NextLink>
-                      <NextLink
-                        href="https://www.bbc.com/portuguese/geral-60156277"
-                        passHref
-                      >
-                        <Link isExternal>
-                          <HStack>
-                            <FiExternalLink size="25px" />
-                            <Text>
-                              O que é apocalipse quântico e existe razão para
-                              preocupação?
-                            </Text>
-                          </HStack>
-                        </Link>
-                      </NextLink>
-                      <NextLink
-                        href="https://canaltech.com.br/ciencia/agencia-de-inteligencia-dos-eua-quer-recriar-mamutes-extintos-227359/"
-                        passHref
-                      >
-                        <Link isExternal>
-                          <HStack>
-                            <FiExternalLink size="25px" />
-                            <Text>
-                              Agência de Inteligência dos EUA quer recriar
-                              mamutes extintos
-                            </Text>
-                          </HStack>
-                        </Link>
-                      </NextLink>
-                      <NextLink
-                        href="https://canaltech.com.br/software/por-que-a-geracao-z-pode-nao-gostar-da-linguagem-de-programacao-python-225719/"
-                        passHref
-                      >
-                        <Link isExternal>
-                          <HStack>
-                            <FiExternalLink size="25px" />
-                            <Text>
-                              Por que a Geração Z pode não gostar da linguagem
-                              de programação Python?
-                            </Text>
-                          </HStack>
-                        </Link>
-                      </NextLink>
+                      {
+                        newsLinks.map(renderNewsLink)
+                      }
                       <Flex w="full" justifyContent="start">
                         <NextLink href="#" passHref>
                           <Link
